@@ -7,14 +7,71 @@
     <title>BMI Calculator</title>
 </head>
 <body>
-    <section>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        #bmi{
+            max-width: 100%;
+            width: 100%;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mb-10px{
+            margin-bottom: 10px;
+        }
+
+        .mb-20px{
+            margin-bottom: 20px;
+        }
+
+
+        #bmi .wrapper .wrapper-input .wp-box{
+            padding: 20px 0;
+            padding-top: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #bmi .wrapper .wrapper-input .wp-box label{
+            margin-bottom: 10px;
+
+        }
+
+        #bmi .wrapper .wrapper-input .wp-box input{
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #252525;
+        }
+    </style>
+    <section id="bmi">
         <div class="wrapper">
             <div class="title">
                 <h1>Check Your BMI</h1>
             </div>
-        </div>
-        <div class="exceprt">
-            <span>Enter your weight and height below to check your BMI</span>
+            <div class="exceprt mb-20px">
+                <span>Enter your weight and height below to check your BMI</span>
+            </div>
+            <div class="wrapper-input">
+                <div class="wp-box">
+                    <label>Put your weight in here (KG)</label>
+                    <input type="text" type="number" min="0">
+                </div>
+                <div class="wp-box">
+                <label>Put your height in here (CM)</label>
+                <input type="text" type="number" min="0">
+            </div>
+            </div>
+            <div class="wrapper-button">
+                <button type="button">Calculate BMI</button>
+            </div>
         </div>
     </section>
 </body>
