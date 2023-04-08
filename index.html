@@ -1,78 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BMI Calculator</title>
-</head>
-<body>
+  </head>
+  <body>
     <style>
-        body{
-            padding: 0;
-            margin: 0;
-            font-family: sans-serif;
-        }
-        #bmi{
-            max-width: 100%;
-            width: 100%;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      #bmi {
+        max-width: 100%;
+        width: 100%;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .mb-10px{
-            margin-bottom: 10px;
-        }
+      .title {
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+      }
 
-        .mb-20px{
-            margin-bottom: 20px;
-        }
+      .mb-10px {
+        margin-bottom: 10px;
+      }
 
+      .mb-20px {
+        margin-bottom: 20px;
+      }
 
-        #bmi .wrapper .wrapper-input .wp-box{
-            padding: 20px 0;
-            padding-top: 0;
-            display: flex;
-            flex-direction: column;
-        }
+      .mb-50px {
+        margin-bottom: 50px;
+      }
 
-        #bmi .wrapper .wrapper-input .wp-box label{
-            margin-bottom: 10px;
+      #bmi .wrapper .wrapper-input .wp-box {
+        padding: 20px 0;
+        padding-top: 0;
+        display: flex;
+        flex-direction: column;
+      }
 
-        }
+      #bmi .wrapper .wrapper-input .wp-box label {
+        margin-bottom: 10px;
+      }
 
-        #bmi .wrapper .wrapper-input .wp-box input{
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #252525;
-        }
+      #bmi .wrapper .wrapper-input .wp-box input {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #252525;
+      }
+
+      button {
+        padding: 10px 30px 10px 30px;
+        background-color: #8338ec;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+        font-size: medium;
+      }
     </style>
     <section id="bmi">
-        <div class="wrapper">
-            <div class="title">
-                <h1>Check Your BMI</h1>
-            </div>
-            <div class="exceprt mb-20px">
-                <span>Enter your weight and height below to check your BMI</span>
-            </div>
-            <div class="wrapper-input">
-                <div class="wp-box">
-                    <label>Put your weight in here (KG)</label>
-                    <input type="text" type="number" min="0">
-                </div>
-                <div class="wp-box">
-                <label>Put your height in here (CM)</label>
-                <input type="text" type="number" min="0">
-            </div>
-            </div>
-            <div class="wrapper-button">
-                <button type="button">Calculate BMI</button>
-            </div>
+      <div class="wrapper">
+        <div class="title">
+          <h1>Check Your BMI</h1>
         </div>
+        <div class="exceprt mb-50px">
+          <span
+            >Enter your weight and height below to check your BMI result</span
+          >
+        </div>
+        <div class="wrapper-input">
+          <div class="wp-box">
+            <label>And your weight in here (KG)</label>
+            <input type="text" type="number" min="0" id="weight" />
+          </div>
+          <div class="wp-box">
+            <label>Put your height in here (CM)</label>
+            <input type="text" type="number" min="0" id="height" />
+          </div>
+        </div>
+        <div class="wrapper-button mb-20px">
+          <button type="button" onclick="validateForm()">Calculate BMI</button>
+        </div>
+        <div class="wrapper-result" id="result">
+          <span></span>
+        </div>
+      </div>
     </section>
-</body>
+    <script>
+      function validateForm() {
+        let height = document.getElementById("height").value;
+        let weight = document.getElementById("weight").value;
+        let resultElement = document.getElementById("result");
+        const maxUnder = 18.5;
+        const maxNormal = 25;
+        const maxOver = 30;
+        let rumus = (weight / (height / 100) ** 2).toPrecision(3);
+
+        if (rumus < maxUnder) {
+          resultElement.innerHTML = `<span>Your BMI is <b>${rumus}</b> which means You are <b>UnderWeight</b></span>`;
+        } else if (rumus >= maxUnder && rumus < maxNormal) {
+          resultElement.innerHTML = `<span>Your BMI is <b>${rumus}</b> which means You are <b>Normal</b></span>`;
+        } else if (rumus >= maxNormal && rumus < maxOver) {
+          resultElement.innerHTML = `<span>Your BMI is <b>${rumus}</b> which means You are <b>OverWeight</b></span>`;
+        } else if (rumus >= maxOver) {
+          resultElement.innerHTML = `<span>Your BMI is <b>${rumus}</b> which means You are <b>Obesity</b></span>`;
+        }
+      }
+    </script>
+  </body>
 </html>
